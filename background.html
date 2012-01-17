@@ -1,0 +1,23 @@
+<html>
+<head>
+<script type="text/javascript">
+
+/**
+ * T-Brain Google Chrome Extension
+ * Coded using Rapid PHP 2011 11.2
+ * (c) 2011-2012 Filip Oščádal <filip@mxd.cz>
+ * Published under GNU GPL v3+ license
+ */
+
+
+/** event: toolbar button clicked */
+chrome.browserAction.onClicked.addListener(function(tab)
+{
+  chrome.tabs.executeScript(tab.id, {file: "content_script.js"});
+  chrome.browserAction.setIcon({path: "icon-toolbar-red.png", tabId: tab.id});
+  return true;
+});
+
+</script>
+</head>
+</html>
