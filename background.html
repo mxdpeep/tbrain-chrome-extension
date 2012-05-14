@@ -1,21 +1,36 @@
 <html>
 <head>
+<script type="text/javascript" src="notification.js"></script>
 <script type="text/javascript">
 
+
 /**
- * T-Brain Google Chrome Extension
- * Coded using Rapid PHP 2011 11.2
+ * Google Chrome Extension: T-Brain
+ * Coded using Rapid PHP 2011 11.22
  * (c) 2011-2012 Filip Oščádal <filip@mxd.cz>
  * Published under GNU GPL v3+ license
  */
 
 
-/** event: toolbar button clicked */
+// set notification properties
+Notification.prefs.icon = 'notification.png';
+Notification.prefs.title = 'T-Brain';
+Notification.prefs.timeout = 2000;
+Notification.prefs.message = 'Flipping your brain out!';
+
+
+// Chrome event - toolbar button clicked
 chrome.browserAction.onClicked.addListener(function(tab)
 {
-  chrome.tabs.executeScript(tab.id, {file: "content_script.js"});
-  chrome.browserAction.setIcon({path: "icon-toolbar-red.png", tabId: tab.id});
-  return true;
+
+	chrome.tabs.executeScript(tab.id,
+	{
+		file: "content_script.js"
+	});
+
+	Notification.show();
+
+	return true;
 });
 
 </script>
